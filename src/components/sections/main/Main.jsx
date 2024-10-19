@@ -32,15 +32,18 @@ const Main = () => {
 
   const onEdit = async (id, currentCard) => {
     try {
-      console.log(id);
+      console.log(`onEdit -> ${id}`);
       console.log(currentCard);
       const response = await axios.put(`http://localhost:3000/api/update-card/${id}`, currentCard);
       console.log(response.data);
       setCards((prevCards) => {
+        currentCard._id = id;
         const index = prevCards.findIndex((card) => card._id === id);
         prevCards[index] = currentCard;
+        console.log(prevCards[index]);
         return [...prevCards];
       });
+      console.log(object)
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +51,7 @@ const Main = () => {
 
   const onDelete = async (id) => {
     try {
+      console.log(`onDELETE -> ${id}`)
       const response = await axios.delete(`http://localhost:3000/api/delete-card/${id}`);
       console.log(response.data);
       setCards((prevCards) => prevCards.filter((card) => card._id !== id));
