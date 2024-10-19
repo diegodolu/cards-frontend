@@ -43,7 +43,6 @@ const Main = () => {
         console.log(prevCards[index]);
         return [...prevCards];
       });
-      console.log(object)
     } catch (error) {
       console.error(error);
     }
