@@ -22,7 +22,7 @@ const Main = () => {
 
   const getCards = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/get-cards");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/get-cards`);
       setCards(response.data);
       console.log(response.data); // Cambiado para asegurar que se imprime la respuesta correcta
     } catch (error) {
@@ -34,7 +34,7 @@ const Main = () => {
     try {
       console.log(`onEdit -> ${id}`);
       console.log(currentCard);
-      const response = await axios.put(`http://localhost:3000/api/update-card/${id}`, currentCard);
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/update-card/${id}`, currentCard);
       console.log(response.data);
       setCards((prevCards) => {
         currentCard._id = id;
@@ -51,7 +51,7 @@ const Main = () => {
   const onDelete = async (id) => {
     try {
       console.log(`onDELETE -> ${id}`)
-      const response = await axios.delete(`http://localhost:3000/api/delete-card/${id}`);
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/delete-card/${id}`);
       console.log(response.data);
       setCards((prevCards) => prevCards.filter((card) => card._id !== id));
     } catch (error) {

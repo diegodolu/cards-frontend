@@ -18,7 +18,7 @@ const Modal = ({ isOpen, onClose, onSave, initialQuestion, initialAnswer, id="",
                 const newCard = { pregunta, respuesta }; // Crear un objeto con la nueva tarjeta
                 console.log(newCard); // Imprimir la nueva tarjeta
                 // Hacer la solicitud POST para crear la tarjeta
-                const response = await axios.post("http://localhost:3000/api/create-card", newCard);
+                const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/create-card`, newCard);
                 newCard._id = response.data._id; // Imprimir la respuesta del servidor
                 onSave(newCard); // Pasar la nueva tarjeta al componente Main
                 console.log(newCard); // Imprimir la nueva tarjeta
